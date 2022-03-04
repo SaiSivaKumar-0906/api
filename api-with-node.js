@@ -1,18 +1,18 @@
-const express= require('express')
+const express=require('express')
 const server=express()
-const port=5685
+const path=require('path')
 
+server.use(express.json())
 
-server.get('/json',
-(req, res)=>{
-res.send({
-'✈':'aeroplane',
-'🚕':'cab',
-'🏚':'house'
+server.post('/data', (req, res)=>{
+console.log(req.body)
 })
-}
-)
 
+// server.get('/',(req, res)=>{
+// re.send('fine')
+// })
+
+const port=process.env.PORT || 9966
 
 server.listen(
 port,()=>{
