@@ -1,20 +1,17 @@
-const express=require('express')
-const server=express()
-const path=require('path')
+const http = require('http')
+const port=6969
+const json =require('./new.json')
 
-server.use(express.json())
-
-server.post('/data', (req, res)=>{
-console.log(req.body)
+const server=http.createServer((req, res)=>{
+if(req.url === 'restapi/something' && req.method === 200){
+res.writeHead(200, {'Content-Type':'application/json'})
+res.end(JSON.stringify(json))
+}
+else{
+res.writeHead(404, 'not found')
+}
 })
 
-// server.get('/',(req, res)=>{
-// re.send('fine')
-// })
-
-const port=process.env.PORT || 9966
-
-server.listen(
-port,()=>{
-console.log('server running at http://www.localhost:'+port)
+server.listen(port,()=>{
+console.log(`server running at:${'http://localhost:'}${port}${"/restapi/something"}`)
 })
